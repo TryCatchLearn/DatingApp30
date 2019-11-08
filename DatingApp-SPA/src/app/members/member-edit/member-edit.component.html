@@ -1,11 +1,12 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-sm-4">
-        <h1>Your Profile</h1>
+      <h1>Your Profile</h1>
     </div>
     <div class="col-sm-8">
       <div *ngIf="editForm.dirty" class="alert alert-info">
-        <strong>Information:</strong> You have made changes.  Any unsaved changes will be lost!
+        <strong>Information:</strong> You have made changes. Any unsaved changes
+        will be lost!
       </div>
     </div>
   </div>
@@ -14,7 +15,7 @@
       <div class="card">
         <img
           class="card-img-top img-thumbnail"
-          src="{{ user.photoUrl }}"
+          src="{{ photoUrl }}"
           alt="{{ user.knownAs }}"
         />
         <div class="card-body">
@@ -36,7 +37,13 @@
           </div>
         </div>
         <div class="card-footer">
-          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save changes</button>
+          <button
+            [disabled]="!editForm.dirty"
+            form="editForm"
+            class="btn btn-success btn-block"
+          >
+            Save changes
+          </button>
         </div>
       </div>
     </div>
@@ -86,7 +93,10 @@
             </form>
           </tab>
           <tab heading="Edit Photos">
-            <p>Photo edit will go here</p>
+            <app-photo-editor
+              [photos]="user.photos"
+              (getMemberPhotoChange)="updateMainPhoto($event)"
+            ></app-photo-editor>
           </tab>
         </tabset>
       </div>
