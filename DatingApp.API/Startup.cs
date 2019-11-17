@@ -8,6 +8,7 @@ using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -78,6 +79,15 @@ namespace DatingApp.API
                         ValidateAudience = false
                     };
                 });
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsCurrentUser", policy =>
+                {
+                    policy.Requirements.Add(new IsCurrentUserRequirement());
+                });
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IAuthorizationHandler, IsCurrentUserRequirementHandler>();
             services.AddScoped<LogUserActivity>();
         }
 

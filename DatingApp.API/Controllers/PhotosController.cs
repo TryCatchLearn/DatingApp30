@@ -50,10 +50,11 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "IsCurrentUser")]
         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
             var userFromRepo = await _repo.GetUser(userId);
             var file = photoForCreationDto.File;
@@ -94,10 +95,11 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("{id}/setMain")]
+        [Authorize(Policy = "IsCurrentUser")]
         public async Task<IActionResult> SetMain(int userId, int id)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
             var user = await _repo.GetUser(userId);
 
@@ -121,10 +123,11 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "IsCurrentUser")]
         public async Task<IActionResult> DeletePhoto(int userId, int id)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
             var user = await _repo.GetUser(userId);
 
