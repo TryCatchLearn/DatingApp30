@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\nav",
+    "\\src\\app\\_services"
+  ],
+  "SelectedNode": "\\src\\app\\_services\\auth.service.ts",
+  "PreviewInSolutionExplorer": false
+}
