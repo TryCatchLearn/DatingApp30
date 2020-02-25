@@ -15,5 +15,10 @@ namespace DatingApp.API.Models
         public DateTime MessageSent { get; set; }
         public bool SenderDeleted { get; set; }
         public bool RecipientDeleted { get; set; }
+
+        public Message ()
+	    {
+            MessageSent = DateTime.Now;
+	    }
     }
 }
