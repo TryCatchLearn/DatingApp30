@@ -11,7 +11,7 @@ import { Message } from '../_models/message';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.apiUrl;
+  baseUrl:string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
